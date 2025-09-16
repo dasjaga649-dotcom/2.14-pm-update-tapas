@@ -56,7 +56,7 @@ const renderFiltersAndSorts = (container, data) => {
     };
     const uniqueTypes = [...new Set(data.map(item => item.type).filter(Boolean))];
     const typeOptionsHtml = uniqueTypes.map(type => `
-        <label class="flex items-center space-x-2 text-gray-700 capitalize">
+        <label class="amenity-option flex items-center gap-2 text-gray-700 capitalize">
             <input type="checkbox" name="type-filter" value="${type}" class="form-checkbox h-4 w-4 text-blue-600 rounded">
             <span>${typeAliases[type] || type}</span>
         </label>
@@ -66,7 +66,7 @@ const renderFiltersAndSorts = (container, data) => {
         <div class="p-4">
             <div class="mb-4">
                 <h4 class="text-lg font-bold mb-2">Filter by Type</h4>
-                <div class="grid grid-cols-2 gap-2" id="type-filters">
+                <div class="amenity-grid" id="type-filters">
                     ${typeOptionsHtml}
                 </div>
             </div>
