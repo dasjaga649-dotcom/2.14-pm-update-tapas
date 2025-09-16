@@ -483,3 +483,38 @@ input[type="checkbox"]:checked + .collapse-title:after {
     width: 100% !important;
     max-width: none !important;
 }
+
+/* Chat alignment helpers */
+.chat-right-align { margin-left: auto; }
+.chat-centered { margin-left: auto; margin-right: auto; }
+
+/* Custom modal backdrop: light, subtle blur instead of dark overlay */
+.modal-backdrop {
+  background-color: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(4px);
+}
+
+/* Responsive, modern grid for amenity checkboxes */
+.amenity-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .amenity-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+}
+
+/* Pill-style option for better spacing and non-overlap */
+.amenity-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  line-height: 1.25;
+}

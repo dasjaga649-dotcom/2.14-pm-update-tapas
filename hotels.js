@@ -41,7 +41,7 @@ const getCardHtml = (hotel) => {
         : imageComingSoon;
     const amenitiesHtml = !hotel.amenities || hotel.amenities[0] == null ? [] : hotel.amenities.map(amenity => `
         <span class="flex items-center space-x-2 text-xs text-gray-200">
-            <i class="${getAmenityIcon(amenity)}"></i>
+            <i class="{getAmenityIcon(amenity)}"></i>
             <span>${amenity}</span>
         </span>
     `).join('');
@@ -89,7 +89,7 @@ const renderHotelsInPlace = (filteredData) => {
 const renderFiltersAndSorts = (container, data) => {
     const allAmenities = [...new Set(data.flatMap(hotel => hotel.amenities || []).filter(Boolean))].sort();
     const amenitiesOptionsHtml = allAmenities.map(amenity => `
-        <label class="flex items-center gap-2 text-gray-700">
+        <label class="amenity-option flex items-center gap-2 text-gray-700">
             <input type="checkbox" name="amenity" value="${amenity}" class="form-checkbox h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
             <span class="text-sm">${amenity}</span>
         </label>
@@ -99,22 +99,22 @@ const renderFiltersAndSorts = (container, data) => {
         <div class="space-y-6">
             <div>
                 <h4 class="text-base font-semibold mb-3">Filter by Amenities</h4>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3" id="amenity-filters">
+                <div class="amenity-grid" id="amenity-filters">
                     ${amenitiesOptionsHtml}
                 </div>
             </div>
             <div>
                 <h4 class="text-base font-semibold mb-3">Filter by Rating</h4>
                 <div class="flex flex-wrap gap-4" id="rating-filters">
-                    <label class="flex items-center gap-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="rating-filter" value="4" class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
                         <span class="text-sm">4+ <i class="fas fa-star text-yellow-400"></i></span>
                     </label>
-                    <label class="flex items-center gap-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="rating-filter" value="4.5" class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
                         <span class="text-sm">4.5+ <i class="fas fa-star text-yellow-400"></i></span>
                     </label>
-                    <label class="flex items-center gap-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="rating-filter" value="5" class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
                         <span class="text-sm">5 <i class="fas fa-star text-yellow-400"></i></span>
                     </label>
@@ -122,20 +122,20 @@ const renderFiltersAndSorts = (container, data) => {
             </div>
             <div>
                 <h4 class="text-base font-semibold mb-3">Sort</h4>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="sort-options">
-                    <label class="flex items-center gap-2 text-gray-700">
+                <div class="amenity-grid" id="sort-options">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="sort-option" value="price-asc" class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
                         <span class="text-sm">Price (Low to High)</span>
                     </label>
-                    <label class="flex items-center gap-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="sort-option" value="price-desc" class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
                         <span class="text-sm">Price (High to Low)</span>
                     </label>
-                    <label class="flex items-center gap-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="sort-option" value="rating-desc" class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
                         <span class="text-sm">Rating (High to Low)</span>
                     </label>
-                    <label class="flex items-center gap-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="sort-option" value="rating-asc" class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
                         <span class="text-sm">Rating (Low to High)</span>
                     </label>
@@ -194,7 +194,7 @@ export const renderHotels = (data, isMobile, chatMessages) => {
         <div id="hotels-container" class="carousel flex overflow-x-auto snap-x snap-mandatory space-x-4 pb-4">
             ${data.map(getCardHtml).join('')}
         </div>
-        <div class="filter-modal absolute inset-0 bg-black/50 z-50 hidden">
+        <div class="filter-modal absolute inset-0 modal-backdrop z-50 hidden">
             <div class="modal-panel w-full h-full p-3 sm:p-4">
                 <div class="bg-white rounded-2xl shadow-xl w-full h-full overflow-hidden flex flex-col">
                     <div class="modal-header sticky top-0 flex items-center justify-between px-4 py-3 border-b bg-white">

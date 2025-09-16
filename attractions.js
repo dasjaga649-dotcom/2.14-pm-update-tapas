@@ -56,7 +56,7 @@ const renderFiltersAndSorts = (container, data) => {
     };
     const uniqueTypes = [...new Set(data.map(item => item.type).filter(Boolean))];
     const typeOptionsHtml = uniqueTypes.map(type => `
-        <label class="flex items-center space-x-2 text-gray-700 capitalize">
+        <label class="amenity-option flex items-center gap-2 text-gray-700 capitalize">
             <input type="checkbox" name="type-filter" value="${type}" class="form-checkbox h-4 w-4 text-blue-600 rounded">
             <span>${typeAliases[type] || type}</span>
         </label>
@@ -66,22 +66,22 @@ const renderFiltersAndSorts = (container, data) => {
         <div class="p-4">
             <div class="mb-4">
                 <h4 class="text-lg font-bold mb-2">Filter by Type</h4>
-                <div class="grid grid-cols-2 gap-2" id="type-filters">
+                <div class="amenity-grid" id="type-filters">
                     ${typeOptionsHtml}
                 </div>
             </div>
             <div class="mb-4">
                 <h4 class="text-lg font-bold mb-2">Filter by Rating</h4>
-                <div class="flex flex-wrap gap-2" id="rating-filters">
-                    <label class="flex items-center space-x-2 text-gray-700">
+                <div class="amenity-grid" id="rating-filters">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="rating-filter" value="4" class="form-radio h-4 w-4 text-blue-600">
                         <span>4+ <i class="fas fa-star text-yellow-400"></i></span>
                     </label>
-                    <label class="flex items-center space-x-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="rating-filter" value="4.5" class="form-radio h-4 w-4 text-blue-600">
                         <span>4.5+ <i class="fas fa-star text-yellow-400"></i></span>
                     </label>
-                    <label class="flex items-center space-x-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="rating-filter" value="5" class="form-radio h-4 w-4 text-blue-600">
                         <span>5 <i class="fas fa-star text-yellow-400"></i></span>
                     </label>
@@ -89,12 +89,12 @@ const renderFiltersAndSorts = (container, data) => {
             </div>
             <div class="mb-4">
                 <h4 class="text-lg font-bold mb-2">Sort</h4>
-                <div class="flex flex-wrap gap-2" id="sort-options">
-                    <label class="flex items-center space-x-2 text-gray-700">
+                <div class="amenity-grid" id="sort-options">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="sort-option" value="rating-desc" class="form-radio h-4 w-4 text-blue-600">
                         <span>Rating (High to Low)</span>
                     </label>
-                    <label class="flex items-center space-x-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="sort-option" value="rating-asc" class="form-radio h-4 w-4 text-blue-600">
                         <span>Rating (Low to High)</span>
                     </label>
@@ -153,18 +153,22 @@ export const renderAttractions = (data, isMobile, chatMessages) => {
         <div id="attractions-container" class="carousel flex overflow-x-auto snap-x snap-mandatory space-x-4 pb-4">
             ${data.map(getCardHtml).join('')}
         </div>
-        <div class="filter-modal fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
-            <div class="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto relative">
-                <button class="close-modal absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-2xl font-bold">×</button>
-                <h3 class="text-xl font-bold p-4 border-b">Filters & Sorts</h3>
-                <div id="filter-modal-content"></div>
+        <div class="filter-modal absolute inset-0 modal-backdrop z-50 hidden">
+            <div class="modal-panel w-full h-full p-3 sm:p-4">
+                <div class="bg-white rounded-2xl shadow-xl w-full h-full overflow-hidden flex flex-col">
+                    <div class="modal-header sticky top-0 flex items-center justify-between px-4 py-3 border-b bg-white">
+                        <h3 class="text-lg font-semibold">Filters & Sorts</h3>
+                        <button class="close-modal text-gray-400 hover:text-gray-600 text-2xl font-bold leading-none">×</button>
+                    </div>
+                    <div class="modal-body flex-1 overflow-y-auto px-4 py-4" id="filter-modal-content"></div>
+                </div>
             </div>
         </div>
     `;
 
     const bubble = document.createElement('div');
     bubble.className = `flex justify-start my-4 ${isMobile ? '' : 'w-full'}`;
-    bubble.innerHTML = `<div class="bg-white p-6 rounded-2xl shadow-md w-full">${mainHtml}</div>`;
+    bubble.innerHTML = `<div class="bg-white p-6 rounded-2xl shadow-md w-full relative">${mainHtml}</div>`;
     chatMessages.appendChild(bubble);
 
     const filterModalContent = bubble.querySelector('#filter-modal-content');

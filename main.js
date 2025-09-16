@@ -140,20 +140,20 @@ toggleButton.addEventListener('click', () => {
         showModal("The desktop view is available on larger screens.");
         return;
     }
-    
+
     isDesktopView = !isDesktopView;
     if (isDesktopView) {
-        chatContainer.classList.add('desktop-view');
-        chatContainer.classList.remove('phone-view');
+        chatContainer.classList.add('desktop-view', 'chat-centered');
+        chatContainer.classList.remove('phone-view', 'chat-right-align');
         introSection.classList.add('hide-intro');
         toggleButton.innerHTML = '<i class="fas fa-mobile-alt text-sm"></i>';
     } else {
-        chatContainer.classList.remove('desktop-view');
-        chatContainer.classList.add('phone-view');
+        chatContainer.classList.remove('desktop-view', 'chat-centered');
+        chatContainer.classList.add('phone-view', 'chat-right-align');
         introSection.classList.remove('hide-intro');
         toggleButton.innerHTML = '<i class="fas fa-desktop text-sm"></i>';
     }
-    
+
     const messages = [...chatMessages.children];
     chatMessages.innerHTML = '';
     messages.forEach(msg => chatMessages.appendChild(msg));
@@ -165,8 +165,11 @@ window.addEventListener('load', () => {
     if (window.innerWidth >= 768) {
         chatContainer.classList.add('transition-width');
         introSection.classList.add('transition-all');
-        isDesktopView = true;
-        toggleButton.innerHTML = '<i class="fas fa-mobile-alt text-sm"></i>';
+        isDesktopView = false;
+        chatContainer.classList.add('phone-view', 'chat-right-align');
+        chatContainer.classList.remove('desktop-view', 'chat-centered');
+        introSection.classList.remove('hide-intro');
+        toggleButton.innerHTML = '<i class="fas fa-desktop text-sm"></i>';
     } else {
         isDesktopView = false;
         chatContainer.classList.add('phone-view');

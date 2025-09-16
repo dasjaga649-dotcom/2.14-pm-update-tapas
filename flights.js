@@ -69,7 +69,7 @@ const renderFlightsInPlace = (filteredData) => {
 const renderFiltersAndSorts = (container, data) => {
     const allAirlines = [...new Set(data.map(flight => flight.airline).filter(Boolean))].sort();
     const airlineOptionsHtml = allAirlines.map(airline => `
-        <label class="flex items-center space-x-2 text-gray-700">
+        <label class="amenity-option flex items-center gap-2 text-gray-700">
             <input type="checkbox" name="airline-filter" value="${airline}" class="form-checkbox h-4 w-4 text-blue-600 rounded">
             <span>${airline}</span>
         </label>
@@ -79,34 +79,34 @@ const renderFiltersAndSorts = (container, data) => {
         <div class="p-4">
             <div class="mb-4">
                 <h4 class="text-lg font-bold mb-2">Filter by Airline</h4>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1 max-h-32 overflow-y-auto" id="airline-filters">
+                <div class="amenity-grid mt-1 max-h-32 overflow-y-auto" id="airline-filters">
                     ${airlineOptionsHtml}
                 </div>
             </div>
             <div class="mb-4">
                 <h4 class="text-lg font-bold mb-2">Sort by:</h4>
-                <div class="flex flex-wrap gap-2" id="flight-sorts">
-                    <label class="flex items-center space-x-2 text-gray-700">
+                <div class="amenity-grid" id="flight-sorts">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="flight-sort" value="price-asc" class="form-radio h-4 w-4 text-blue-600">
                         <span>Price (Low to High)</span>
                     </label>
-                    <label class="flex items-center space-x-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="flight-sort" value="price-desc" class="form-radio h-4 w-4 text-blue-600">
                         <span>Price (High to Low)</span>
                     </label>
-                    <label class="flex items-center space-x-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="flight-sort" value="duration-asc" class="form-radio h-4 w-4 text-blue-600">
                         <span>Duration (Shortest)</span>
                     </label>
-                    <label class="flex items-center space-x-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="flight-sort" value="duration-desc" class="form-radio h-4 w-4 text-blue-600">
                         <span>Duration (Longest)</span>
                     </label>
-                    <label class="flex items-center space-x-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="flight-sort" value="departure-asc" class="form-radio h-4 w-4 text-blue-600">
                         <span>Departure (Earliest)</span>
                     </label>
-                    <label class="flex items-center space-x-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="flight-sort" value="departure-desc" class="form-radio h-4 w-4 text-blue-600">
                         <span>Departure (Latest)</span>
                     </label>
@@ -170,18 +170,22 @@ export const renderFlights = (data, isMobile, chatMessages) => {
         <div id="flights-container" class="carousel flex overflow-x-auto snap-x snap-mandatory space-x-4 pb-4">
             ${data.map(getCardHtml).join('')}
         </div>
-        <div class="filter-modal fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
-            <div class="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto relative">
-                <button class="close-modal absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-2xl font-bold">×</button>
-                <h3 class="text-xl font-bold p-4 border-b">Filters & Sorts</h3>
-                <div id="filter-modal-content"></div>
+        <div class="filter-modal absolute inset-0 modal-backdrop z-50 hidden">
+            <div class="modal-panel w-full h-full p-3 sm:p-4">
+                <div class="bg-white rounded-2xl shadow-xl w-full h-full overflow-hidden flex flex-col">
+                    <div class="modal-header sticky top-0 flex items-center justify-between px-4 py-3 border-b bg-white">
+                        <h3 class="text-lg font-semibold">Filters & Sorts</h3>
+                        <button class="close-modal text-gray-400 hover:text-gray-600 text-2xl font-bold leading-none">×</button>
+                    </div>
+                    <div class="modal-body flex-1 overflow-y-auto px-4 py-4" id="filter-modal-content"></div>
+                </div>
             </div>
         </div>
     `;
 
     const bubble = document.createElement('div');
     bubble.className = `flex justify-start my-4 ${isMobile ? '' : 'w-full'}`;
-    bubble.innerHTML = `<div class="bg-white p-6 rounded-2xl shadow-md w-full">${mainHtml}</div>`;
+    bubble.innerHTML = `<div class="bg-white p-6 rounded-2xl shadow-md w-full relative">${mainHtml}</div>`;
     chatMessages.appendChild(bubble);
 
     const filterModalContent = bubble.querySelector('#filter-modal-content');
