@@ -42,7 +42,7 @@ const getCardHtml = (hotel) => {
     const amenitiesHtml = !hotel.amenities || hotel.amenities[0] == null ? [] : hotel.amenities.map(amenity => `
         <span class="flex items-center space-x-2 text-xs text-gray-200">
             <i class="{getAmenityIcon(amenity)}"></i>
-            <span>₹{amenity}</span>
+            <span>${amenity}</span>
         </span>
     `).join('');
 
