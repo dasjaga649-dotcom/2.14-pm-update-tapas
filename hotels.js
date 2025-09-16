@@ -106,15 +106,15 @@ const renderFiltersAndSorts = (container, data) => {
             <div>
                 <h4 class="text-base font-semibold mb-3">Filter by Rating</h4>
                 <div class="flex flex-wrap gap-4" id="rating-filters">
-                    <label class="flex items-center gap-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="rating-filter" value="4" class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
                         <span class="text-sm">4+ <i class="fas fa-star text-yellow-400"></i></span>
                     </label>
-                    <label class="flex items-center gap-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="rating-filter" value="4.5" class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
                         <span class="text-sm">4.5+ <i class="fas fa-star text-yellow-400"></i></span>
                     </label>
-                    <label class="flex items-center gap-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="rating-filter" value="5" class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
                         <span class="text-sm">5 <i class="fas fa-star text-yellow-400"></i></span>
                     </label>
@@ -122,20 +122,20 @@ const renderFiltersAndSorts = (container, data) => {
             </div>
             <div>
                 <h4 class="text-base font-semibold mb-3">Sort</h4>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="sort-options">
-                    <label class="flex items-center gap-2 text-gray-700">
+                <div class="amenity-grid" id="sort-options">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="sort-option" value="price-asc" class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
                         <span class="text-sm">Price (Low to High)</span>
                     </label>
-                    <label class="flex items-center gap-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="sort-option" value="price-desc" class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
                         <span class="text-sm">Price (High to Low)</span>
                     </label>
-                    <label class="flex items-center gap-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="sort-option" value="rating-desc" class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
                         <span class="text-sm">Rating (High to Low)</span>
                     </label>
-                    <label class="flex items-center gap-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="sort-option" value="rating-asc" class="form-radio h-4 w-4 text-blue-600 focus:ring-blue-500">
                         <span class="text-sm">Rating (Low to High)</span>
                     </label>
