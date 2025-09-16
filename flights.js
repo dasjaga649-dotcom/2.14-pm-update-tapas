@@ -69,7 +69,7 @@ const renderFlightsInPlace = (filteredData) => {
 const renderFiltersAndSorts = (container, data) => {
     const allAirlines = [...new Set(data.map(flight => flight.airline).filter(Boolean))].sort();
     const airlineOptionsHtml = allAirlines.map(airline => `
-        <label class="flex items-center space-x-2 text-gray-700">
+        <label class="amenity-option flex items-center gap-2 text-gray-700">
             <input type="checkbox" name="airline-filter" value="${airline}" class="form-checkbox h-4 w-4 text-blue-600 rounded">
             <span>${airline}</span>
         </label>
@@ -79,34 +79,34 @@ const renderFiltersAndSorts = (container, data) => {
         <div class="p-4">
             <div class="mb-4">
                 <h4 class="text-lg font-bold mb-2">Filter by Airline</h4>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1 max-h-32 overflow-y-auto" id="airline-filters">
+                <div class="amenity-grid mt-1 max-h-32 overflow-y-auto" id="airline-filters">
                     ${airlineOptionsHtml}
                 </div>
             </div>
             <div class="mb-4">
                 <h4 class="text-lg font-bold mb-2">Sort by:</h4>
-                <div class="flex flex-wrap gap-2" id="flight-sorts">
-                    <label class="flex items-center space-x-2 text-gray-700">
+                <div class="amenity-grid" id="flight-sorts">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="flight-sort" value="price-asc" class="form-radio h-4 w-4 text-blue-600">
                         <span>Price (Low to High)</span>
                     </label>
-                    <label class="flex items-center space-x-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="flight-sort" value="price-desc" class="form-radio h-4 w-4 text-blue-600">
                         <span>Price (High to Low)</span>
                     </label>
-                    <label class="flex items-center space-x-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="flight-sort" value="duration-asc" class="form-radio h-4 w-4 text-blue-600">
                         <span>Duration (Shortest)</span>
                     </label>
-                    <label class="flex items-center space-x-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="flight-sort" value="duration-desc" class="form-radio h-4 w-4 text-blue-600">
                         <span>Duration (Longest)</span>
                     </label>
-                    <label class="flex items-center space-x-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="flight-sort" value="departure-asc" class="form-radio h-4 w-4 text-blue-600">
                         <span>Departure (Earliest)</span>
                     </label>
-                    <label class="flex items-center space-x-2 text-gray-700">
+                    <label class="amenity-option flex items-center gap-2 text-gray-700">
                         <input type="radio" name="flight-sort" value="departure-desc" class="form-radio h-4 w-4 text-blue-600">
                         <span>Departure (Latest)</span>
                     </label>
