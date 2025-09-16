@@ -153,7 +153,7 @@ export const renderAttractions = (data, isMobile, chatMessages) => {
         <div id="attractions-container" class="carousel flex overflow-x-auto snap-x snap-mandatory space-x-4 pb-4">
             ${data.map(getCardHtml).join('')}
         </div>
-        <div class="filter-modal fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
+        <div class="filter-modal fixed inset-0 modal-backdrop flex items-center justify-center p-4 z-50 hidden">
             <div class="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto relative">
                 <button class="close-modal absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-2xl font-bold">×</button>
                 <h3 class="text-xl font-bold p-4 border-b">Filters & Sorts</h3>
