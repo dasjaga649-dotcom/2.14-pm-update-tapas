@@ -484,6 +484,10 @@ input[type="checkbox"]:checked + .collapse-title:after {
     max-width: none !important;
 }
 
+/* Chat alignment helpers */
+.chat-right-align { margin-left: auto; }
+.chat-centered { margin-left: auto; margin-right: auto; }
+
 /* Custom modal backdrop: light, subtle blur instead of dark overlay */
 .modal-backdrop {
   background-color: rgba(255, 255, 255, 0.35);
